@@ -580,45 +580,45 @@
     <div class="container">
       <h2>Patient stratification summary</h2>
       <p class="lead">
-        Molecular subtype labels were used as an initial patient stratification layer, then refined
-        with mutation, copy-number and expression evidence.
+        Molecular subtype was used as the first stratification layer. Mutation, copy-number
+        and expression data were then added to describe what makes each tumour group biologically distinct.
       </p>
-  
+
       <div class="grid grid-3">
         <div class="card finding">
           <h3>Basal-like</h3>
-          <p><strong>Molecular profile:</strong> TP53 mutation enriched, frequent MYC amplification, PTEN/RB1 loss signals.</p>
-          <p><strong>Interpretation:</strong> proliferative/genomically altered subgroup; useful for prioritizing aggressive disease biology hypotheses.</p>
+          <p><strong>Observed profile:</strong> high TP53 mutation frequency, with additional MYC amplification and PTEN/RB1 loss signals.</p>
+          <p><strong>Stratification value:</strong> identifies a more genomically altered and proliferative tumour group that may require different biological hypotheses from luminal disease.</p>
         </div>
-  
+
         <div class="card finding">
           <h3>HER2-enriched</h3>
-          <p><strong>Molecular profile:</strong> ERBB2 amplification and high ERBB2 expression.</p>
-          <p><strong>Interpretation:</strong> clear genotype-expression link and positive control for actionable subtype biology.</p>
+          <p><strong>Observed profile:</strong> frequent ERBB2 amplification together with high ERBB2 expression.</p>
+          <p><strong>Stratification value:</strong> links a transcriptomic subtype to a concrete genomic event and expression readout.</p>
         </div>
-  
+
         <div class="card finding">
           <h3>Luminal A</h3>
-          <p><strong>Molecular profile:</strong> higher PIK3CA, CDH1 and MAP3K1 mutation frequencies; lower TP53 mutation burden.</p>
-          <p><strong>Interpretation:</strong> hormone/luminal-associated biology with distinct driver alteration context.</p>
+          <p><strong>Observed profile:</strong> higher PIK3CA, CDH1 and MAP3K1 mutation frequencies, with comparatively low TP53 mutation frequency.</p>
+          <p><strong>Stratification value:</strong> represents a hormone/luminal-associated molecular context with distinct driver alteration patterns.</p>
         </div>
-  
+
         <div class="card finding">
           <h3>Luminal B</h3>
-          <p><strong>Molecular profile:</strong> luminal identity with stronger proliferative/CNA-associated features.</p>
-          <p><strong>Interpretation:</strong> intermediate subgroup between LumA-like and more aggressive molecular programs.</p>
+          <p><strong>Observed profile:</strong> luminal identity with stronger proliferative and copy-number-associated features than Luminal A.</p>
+          <p><strong>Stratification value:</strong> captures an intermediate group between Luminal A-like biology and more aggressive expression programs.</p>
         </div>
-  
+
         <div class="card finding">
           <h3>Normal-like</h3>
-          <p><strong>Molecular profile:</strong> retained as annotated subtype, but fewer samples and less distinctive driver signal.</p>
-          <p><strong>Interpretation:</strong> included for completeness; conclusions require caution.</p>
+          <p><strong>Observed profile:</strong> retained as an annotated subtype, but with fewer samples and less distinctive driver alteration patterns.</p>
+          <p><strong>Stratification value:</strong> included for completeness, while avoiding strong conclusions due to sample size and possible tissue-composition effects.</p>
         </div>
-  
+
         <div class="card finding">
-          <h3>Cross-subtype layer</h3>
-          <p><strong>Molecular profile:</strong> subtype-adjusted genotype-expression associations identify direct and context-dependent effects.</p>
-          <p><strong>Interpretation:</strong> separates alteration-expression signals from subtype-driven associations.</p>
+          <h3>Subtype-adjusted layer</h3>
+          <p><strong>Observed profile:</strong> some alteration-expression links remain after adjusting for subtype, while others are mostly subtype-context effects.</p>
+          <p><strong>Stratification value:</strong> helps separate direct genomic dosage effects from broader subtype-associated biology.</p>
         </div>
       </div>
     </div>
@@ -695,12 +695,19 @@
 
   <section>
     <div class="container">
-      <h2>Clinical outcome exploration</h2>
+      <h2>Secondary analysis — clinical outcome exploration</h2>
       <p class="lead">
-        Clinical outcome metadata were integrated as an exploratory layer. Overall survival showed a modest
-        association with molecular subtype, while individual driver events did not show robust standalone
-        OS/PFS associations in this retrospective cohort.
+        Overall survival means time until death or last follow-up. Progression-free survival means
+        time until disease progression, recurrence or last follow-up. These variables were explored
+        as an additional clinical layer, not as the main result of the project.
       </p>
+
+      <div class="callout">
+        <strong>Result:</strong>
+        molecular subtype showed a modest exploratory association with overall survival, while selected
+        individual driver alterations did not show robust standalone associations with overall survival
+        or progression-free survival in this retrospective TCGA cohort.
+      </div>
 
       <div class="figure-card">
         <img src="assets/08_overall_survival_by_subtype.png" alt="Overall survival by subtype">
@@ -714,20 +721,42 @@
 
   <section>
     <div class="container">
-      <h2>What this project demonstrates</h2>
+      <h2>Why this is relevant to translational computational biology</h2>
+      <p class="lead">
+        The main value of this project is not a single predictive model, but a reproducible
+        workflow for integrating heterogeneous cancer data and turning it into interpretable
+        stratification hypotheses.
+      </p>
 
       <div class="grid grid-3">
         <div class="card">
-          <h3>Computational biology</h3>
-          <p>RNA-seq processing, subtype interpretation, marker validation and differential expression analysis.</p>
+          <h3>Patient stratification</h3>
+          <p>Uses molecular subtype as an initial tumour grouping and refines it with mutation, copy-number and expression evidence.</p>
         </div>
+
         <div class="card">
           <h3>Multi-omic integration</h3>
-          <p>Integration of expression, mutation, copy-number and clinical metadata across TCGA samples.</p>
+          <p>Harmonizes RNA-seq, mutation, copy-number and clinical metadata at sample level.</p>
         </div>
+
         <div class="card">
-          <h3>Translational reasoning</h3>
-          <p>Connecting molecular heterogeneity, driver alterations and expression consequences while communicating limitations.</p>
+          <h3>Genotype-expression reasoning</h3>
+          <p>Connects genomic alterations such as ERBB2 amplification or PTEN deletion with expression-level consequences.</p>
+        </div>
+
+        <div class="card">
+          <h3>Disease mechanism hypotheses</h3>
+          <p>Identifies driver-associated expression patterns and subtype-adjusted signals that can guide follow-up analyses.</p>
+        </div>
+
+        <div class="card">
+          <h3>Clinical caution</h3>
+          <p>Explores survival metadata while clearly separating exploratory associations from clinically validated biomarkers.</p>
+        </div>
+
+        <div class="card">
+          <h3>Communication</h3>
+          <p>Summarizes technical analyses into decision-oriented findings, limitations and next analytical steps.</p>
         </div>
       </div>
     </div>
@@ -740,28 +769,9 @@
         <li>TCGA is retrospective and not a clinical trial.</li>
         <li>Treatment and response data are incomplete.</li>
         <li>Molecular subtype labels are partly expression-derived.</li>
-        <li>Copy-number events may span broad regions, so gene-level CNA-expression effects require regional interpretation.</li>
+        <li>Copy-number events may span broad genomic regions, so gene-level CNA-expression effects require regional interpretation.</li>
         <li>Discovery analyses are hypothesis-generating and require independent validation.</li>
       </ul>
-    </div>
-  </section>
-  <section>
-    <div class="container">
-      <h2>Relevance to translational computational biology</h2>
-      <div class="grid grid-3">
-        <div class="card">
-          <h3>Patient stratification</h3>
-          <p>Subtype-aware analyses connect molecular labels with genomic driver patterns.</p>
-        </div>
-        <div class="card">
-          <h3>Multi-omic integration</h3>
-          <p>RNA-seq, mutation, copy-number and clinical metadata are harmonized at sample level.</p>
-        </div>
-        <div class="card">
-          <h3>Decision-oriented communication</h3>
-          <p>Results are summarized as interpretable findings, limitations and next analytical steps.</p>
-        </div>
-      </div>
     </div>
   </section>
   <footer>
