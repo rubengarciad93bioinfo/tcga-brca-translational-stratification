@@ -343,9 +343,9 @@
       <div class="eyebrow">Computational Biology Portfolio Case Study</div>
       <h1>Multi-omic exploration of breast cancer molecular heterogeneity</h1>
       <p class="subtitle">
-        A reproducible TCGA-BRCA workflow integrating RNA-seq, molecular subtypes, mutation data, 
-        copy-number alterations and clinical metadata to characterize breast cancer heterogeneity 
-        and generate stratification-oriented translational hypotheses.
+        A reproducible workflow integrating TCGA-BRCA RNA-seq, molecular subtypes, mutation, copy-number and clinical metadata,
+        with DepMap/CCLE breast cancer cell-line data, to characterize tumour heterogeneity and generate stratification-oriented 
+        translational hypotheses.
       </p>
       <div class="links">
         <a class="button" href="https://github.com/rubengarciad93bioinfo/tcga-brca-translational-stratification">Repository</a>
@@ -366,11 +366,12 @@
         <div class="metric-label">Molecular subtype groups retained: LumA, LumB, HER2, Basal and Normal-like</div>
       </div>
       <div class="card">
-        <div class="metric">4</div>
-        <div class="metric-label">Main data layers: RNA-seq, clinical metadata, mutation and copy-number alteration data</div>
+        <div class="metric">5</div>
+        <div class="metric-label">Data resources/layers: TCGA-BRCA expression, clinical metadata, mutation, copy-number and DepMap/CCLE cell-line expression</div>
       </div>
     </div>
   </section>
+
   <section class="snapshot">
     <div class="container grid grid-3">
       <div class="snapshot-card">
@@ -397,12 +398,13 @@
       </div>
     </div>
   </section>
+  <section>
     <div class="container">
-      <h2>What was the biological question?</h2>
+      <h2>Project scope</h2>
       <p class="lead">
-        This project does not ask whether a patient has cancer. TCGA-BRCA mainly contains
-        breast cancer samples. The goal is to understand how breast cancer samples differ
-        molecularly, and how transcriptomic subtypes relate to genomic driver events.
+        This project focuses on molecular heterogeneity among breast cancer samples, not cancer-vs-normal classification.
+        TCGA-BRCA tumour profiles were used to characterize subtype-associated biology, and DepMap/CCLE breast cancer
+        cell lines were used as a proof-of-concept model-matching extension.
       </p>
 
       <div class="tag-row">
@@ -447,6 +449,10 @@
             Copy-number alterations
             <small>gene-level amplification/deletion calls</small>
           </div>
+          <div class="workflow-block">
+            DepMap/CCLE cell-line expression
+            <small>breast cancer models for ex-vivo matching</small>
+          </div>
         </div>
   
         <div class="workflow-arrow">→</div>
@@ -472,6 +478,10 @@
           <div class="workflow-block">
             Genotype-expression models
             <small>event-expression associations adjusted for subtype</small>
+          </div>
+          <div class="workflow-block">
+            Ex-vivo model matching
+            <small>subtype- and sample-level similarity to breast cancer cell lines</small>
           </div>
         </div>
   
@@ -578,53 +588,6 @@
   </section>
   <section>
     <div class="container">
-      <h2>Patient stratification summary</h2>
-      <p class="lead">
-        Molecular subtype was used as the first stratification layer. Mutation, copy-number
-        and expression data were then added to describe what makes each tumour group biologically distinct.
-      </p>
-
-      <div class="grid grid-3">
-        <div class="card finding">
-          <h3>Basal-like</h3>
-          <p><strong>Observed profile:</strong> high TP53 mutation frequency, with additional MYC amplification and PTEN/RB1 loss signals.</p>
-          <p><strong>Stratification value:</strong> identifies a more genomically altered and proliferative tumour group that may require different biological hypotheses from luminal disease.</p>
-        </div>
-
-        <div class="card finding">
-          <h3>HER2-enriched</h3>
-          <p><strong>Observed profile:</strong> frequent ERBB2 amplification together with high ERBB2 expression.</p>
-          <p><strong>Stratification value:</strong> links a transcriptomic subtype to a concrete genomic event and expression readout.</p>
-        </div>
-
-        <div class="card finding">
-          <h3>Luminal A</h3>
-          <p><strong>Observed profile:</strong> higher PIK3CA, CDH1 and MAP3K1 mutation frequencies, with comparatively low TP53 mutation frequency.</p>
-          <p><strong>Stratification value:</strong> represents a hormone/luminal-associated molecular context with distinct driver alteration patterns.</p>
-        </div>
-
-        <div class="card finding">
-          <h3>Luminal B</h3>
-          <p><strong>Observed profile:</strong> luminal identity with stronger proliferative and copy-number-associated features than Luminal A.</p>
-          <p><strong>Stratification value:</strong> captures an intermediate group between Luminal A-like biology and more aggressive expression programs.</p>
-        </div>
-
-        <div class="card finding">
-          <h3>Normal-like</h3>
-          <p><strong>Observed profile:</strong> retained as an annotated subtype, but with fewer samples and less distinctive driver alteration patterns.</p>
-          <p><strong>Stratification value:</strong> included for completeness, while avoiding strong conclusions due to sample size and possible tissue-composition effects.</p>
-        </div>
-
-        <div class="card finding">
-          <h3>Subtype-adjusted layer</h3>
-          <p><strong>Observed profile:</strong> some alteration-expression links remain after adjusting for subtype, while others are mostly subtype-context effects.</p>
-          <p><strong>Stratification value:</strong> helps separate direct genomic dosage effects from broader subtype-associated biology.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="container">
       <h2>Key finding 4 — Copy-number events have expression consequences</h2>
       <p class="lead">
         Copy-number alterations were linked with RNA expression to test whether genomic events
@@ -656,8 +619,50 @@
       </div>
     </div>
   </section>
-
   <section>
+    <div class="container">
+      <h2>Molecular stratification summary</h2>
+      <p class="lead">
+        Molecular subtype was used as the first grouping layer. Mutation, copy-number and expression data
+        were then integrated to refine the biological interpretation of each tumour group.
+      </p>
+  
+      <div class="grid grid-2">
+        <div class="card finding">
+          <h3>Basal-like</h3>
+          <p><strong>Observed profile:</strong> high TP53 mutation frequency, with additional MYC amplification and PTEN/RB1 loss signals.</p>
+          <p><strong>Interpretation:</strong> identifies a more genomically altered and proliferative tumour group, distinct from luminal disease biology.</p>
+        </div>
+  
+        <div class="card finding">
+          <h3>HER2-enriched</h3>
+          <p><strong>Observed profile:</strong> frequent ERBB2 amplification together with high ERBB2 expression.</p>
+          <p><strong>Interpretation:</strong> links transcriptomic subtype identity to a concrete genomic event and expression readout.</p>
+        </div>
+  
+        <div class="card finding">
+          <h3>Luminal-like</h3>
+          <p><strong>Observed profile:</strong> Luminal A and Luminal B tumours showed hormone/luminal-associated biology, with PIK3CA, CDH1, GATA3 and MAP3K1 alteration patterns.</p>
+          <p><strong>Interpretation:</strong> separates luminal-associated tumour contexts from more basal/HER2-like molecular programs.</p>
+        </div>
+  
+        <div class="card finding">
+          <h3>Subtype-adjusted refinement</h3>
+          <p><strong>Observed profile:</strong> some alteration-expression links remained after adjusting for subtype, while others were mostly subtype-context effects.</p>
+          <p><strong>Interpretation:</strong> helps distinguish direct genomic dosage effects from broader subtype-associated biology.</p>
+        </div>
+      </div>
+  
+      <div class="callout" style="margin-top: 24px;">
+        <strong>Note:</strong>
+        Normal-like samples were retained in the analysis for completeness, but were interpreted cautiously
+        due to smaller sample size and possible tissue-composition effects.
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- <section>
     <div class="container">
       <h2>Exploratory discovery layer</h2>
       <p class="lead">
@@ -692,7 +697,7 @@
         distinguish focal events from broad amplicons.
       </div>
     </div>
-  </section>
+  </section> -->
   <section>
     <div class="container">
       <h2>Translational extension — ex-vivo model matching</h2>
@@ -701,7 +706,12 @@
         DepMap/CCLE breast cancer cell line transcriptomes to prioritize candidate ex-vivo
         models representing Basal-like, HER2-enriched and Luminal-like disease contexts.
       </p>
-
+      <h3 style="margin-top: 32px;">Subtype-level model matching</h3>
+      <p class="lead">
+        First, TCGA-BRCA subtype centroids were compared against DepMap/CCLE breast cancer cell lines.
+        This provides a broad view of which cell-line models resemble average Basal-like, HER2-enriched
+        or Luminal-like tumour profiles.
+      </p>
       <div class="figure-card">
         <img src="assets/09_depmap_model_matching_heatmap.png" alt="DepMap breast cancer cell line similarity to TCGA-BRCA subtype centroids">
         <div class="figure-caption">
@@ -712,7 +722,7 @@
         </div>
       </div>
 
-      <div class="figure-card">
+      <!-- <div class="figure-card">
         <img src="assets/10_depmap_marker_sanity_check.png" alt="Marker expression sanity check for top DepMap matches">
         <div class="figure-caption">
           Marker-level sanity check for top matched models. This helps verify whether candidate cell lines
@@ -725,15 +735,20 @@
         In addition to subtype centroid matching, each individual TCGA-BRCA sample was compared
         against DepMap/CCLE breast cancer cell lines. This provides a more granular view of how
         tumour samples within the same molecular subtype may map to different candidate ex-vivo models.
+      </p> -->
+      <h3 style="margin-top: 32px;">Sample-level model prioritization</h3>
+      <p class="lead">
+        Next, each individual TCGA-BRCA sample was compared against DepMap/CCLE breast cancer cell lines.
+        This provides a more granular view of within-subtype heterogeneity and highlights recurrent
+        candidate models for individual tumour-like profiles.
       </p>
-
       <div class="grid grid-2">
         <div class="figure-card">
           <img src="assets/11_sample_level_model_frequency_by_subtype.png" alt="Sample-level DepMap model matching frequency by TCGA-BRCA subtype">
           <div class="figure-caption">
-            Frequency with which each DepMap breast cancer cell line appears as the top-matching model
-            for individual TCGA-BRCA samples within each subtype. This highlights recurrent candidate
-            models while preserving within-subtype heterogeneity.
+            For each TCGA-BRCA sample, the top-matching DepMap breast cancer cell line was identified.
+            This heatmap shows how often each cell line appears as the top match within each molecular subtype.
+            It highlights recurrent candidate models while preserving within-subtype heterogeneity.
           </div>
         </div>
 
@@ -741,8 +756,8 @@
           <img src="assets/12_sample_level_best_similarity_by_subtype.png" alt="Best DepMap model similarity per TCGA-BRCA sample">
           <div class="figure-caption">
             Distribution of the best available cell-line similarity for individual TCGA-BRCA samples.
-            Similarity scores are not probabilities; they indicate relative transcriptomic proximity within
-            the available DepMap breast cancer model set.
+            Basal-like samples showed the clearest matching signal, while HER2-enriched and luminal profiles
+            showed more moderate or heterogeneous similarity. These scores are relative similarities, not probabilities.
           </div>
         </div>
       </div>
@@ -763,7 +778,7 @@
       </div>
     </div>
   </section>
-  <section>
+  <!-- <section>
     <div class="container">
       <h2>Secondary analysis — clinical outcome exploration</h2>
       <p class="lead">
@@ -787,7 +802,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <section>
     <div class="container">
@@ -800,7 +815,7 @@
 
       <div class="grid grid-3">
         <div class="card">
-          <h3>Patient stratification</h3>
+          <h3>Molecular stratification</h3>
           <p>Uses molecular subtype as an initial tumour grouping and refines it with mutation, copy-number and expression evidence.</p>
         </div>
 
@@ -820,8 +835,8 @@
         </div>
 
         <div class="card">
-          <h3>Clinical caution</h3>
-          <p>Explores survival metadata while clearly separating exploratory associations from clinically validated biomarkers.</p>
+          <h3>Ex-vivo model prioritization</h3>
+          <p>Projects tumour subtype and sample-level profiles onto DepMap/CCLE breast cancer cell lines as a cautious model-matching proof of concept.</p>
         </div>
 
         <div class="card">
@@ -840,7 +855,7 @@
         <li>Treatment and response data are incomplete.</li>
         <li>Molecular subtype labels are partly expression-derived.</li>
         <li>Copy-number events may span broad genomic regions, so gene-level CNA-expression effects require regional interpretation.</li>
-        <li>Discovery analyses are hypothesis-generating and require independent validation.</li>
+        <li>Exploratory and ex-vivo model-matching analyses are hypothesis-generating and require independent validation.</li>
       </ul>
     </div>
   </section>
