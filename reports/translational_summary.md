@@ -58,11 +58,23 @@ Subtype-adjusted models indicate that several alteration-expression associations
 
 ### 5. Clinical associations are exploratory
 
-Overall survival showed an exploratory association with subtype. However, selected individual driver alterations did not show robust standalone survival associations in this retrospective cohort.
+Overall survival, defined as time until death or last follow-up, showed an exploratory association with subtype. Progression-free survival, defined as time until progression, recurrence or last follow-up, showed weaker differences across subtypes.
 
 ### 6. Discovery analyses generate hypotheses, not validated biomarkers
 
 Subtype-adjusted CNA-expression scans and driver-associated transcriptome scans identified candidate dosage-sensitive genes and expression programs. These findings require external validation and should not be interpreted as causal or clinically actionable.
+
+## Patient stratification interpretation
+
+Molecular subtype was used as the initial stratification layer. Mutation, copy-number and expression data were then integrated to describe what makes each tumour group biologically distinct.
+
+- Basal-like tumours showed high TP53 mutation frequency, together with additional MYC amplification and PTEN/RB1 loss signals, supporting a more proliferative and genomically altered profile.
+- HER2-enriched tumours showed frequent ERBB2 amplification and high ERBB2 expression, linking subtype identity to a concrete genomic event and transcriptomic readout.
+- Luminal A tumours showed higher PIK3CA, CDH1 and MAP3K1 mutation frequencies and comparatively lower TP53 mutation frequency.
+- Luminal B retained luminal identity but showed stronger proliferative and copy-number-associated features than Luminal A.
+- Normal-like samples were retained as an annotated subtype but interpreted cautiously due to sample size and possible tissue-composition effects.
+
+This stratification is exploratory and should be interpreted as a molecular characterization workflow rather than a clinically validated decision tool.
 
 ## Translational relevance
 
@@ -87,4 +99,4 @@ This workflow demonstrates how public multi-omic cancer datasets can be used to:
 1. Map CNA-expression discovery hits to genomic coordinates to distinguish focal events from broad amplicons.
 2. Perform pathway or gene-set enrichment on driver-associated expression signatures.
 3. Validate candidate signatures in an independent breast cancer cohort.
-4. Integrate breast cancer cell line data from CCLE/DepMap to identify ex-vivo models representing key molecular subtypes.
+4. Integrate breast cancer cell line or organoid datasets from DepMap/CCLE to identify ex-vivo models representing key TCGA-BRCA molecular subtypes.
