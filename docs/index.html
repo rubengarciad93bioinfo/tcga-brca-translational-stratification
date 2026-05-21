@@ -138,7 +138,95 @@
       margin-top: 8px;
       font-size: 0.95rem;
     }
+    .snapshot {
+      margin-top: -28px;
+      position: relative;
+      z-index: 2;
+      padding-top: 0;
+    }
 
+    .snapshot-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .snapshot-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .snapshot-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .snapshot-card strong {
+      color: var(--text);
+    }
+
+    .workflow-map {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 28px;
+    }
+
+    .workflow-column {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .workflow-column h3 {
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .workflow-block {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 10px;
+      font-weight: 650;
+    }
+
+    .workflow-block small {
+      display: block;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .workflow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+@media (max-width: 900px) {
+  .workflow-map {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-arrow {
+    transform: rotate(90deg);
+    padding: 4px 0;
+  }
+}
     .tag-row {
       display: flex;
       flex-wrap: wrap;
@@ -283,24 +371,32 @@
       </div>
     </div>
   </section>
-  <section>
-    <div class="container">
-      <div class="callout">
-        <h2>TL;DR</h2>
+  <section class="snapshot">
+    <div class="container grid grid-3">
+      <div class="snapshot-card">
+        <div class="snapshot-label">Question</div>
         <p>
-          I built a reproducible multi-omic workflow using TCGA-BRCA to explore how
-          breast cancer molecular subtypes relate to RNA-seq expression, mutation patterns,
-          copy-number alterations and clinical metadata.
+          How do breast cancer molecular subtypes differ at the transcriptomic and genomic level?
         </p>
+      </div>
+  
+      <div class="snapshot-card">
+        <div class="snapshot-label">Core result</div>
         <p>
-          The strongest results were the subtype-specific driver alteration patterns:
-          Basal-like tumours were enriched for TP53 mutation, HER2-enriched tumours for
-          ERBB2 amplification, and Luminal A tumours for PIK3CA/CDH1/MAP3K1 alterations.
+          <strong>Basal-like</strong> tumours were enriched for TP53 mutation, while
+          <strong>HER2-enriched</strong> tumours showed strong ERBB2 amplification.
+        </p>
+      </div>
+  
+      <div class="snapshot-card">
+        <div class="snapshot-label">Why it matters</div>
+        <p>
+          The workflow links RNA-seq, mutation and copy-number data into interpretable
+          patient stratification hypotheses.
         </p>
       </div>
     </div>
   </section>
-  <section>
     <div class="container">
       <h2>What was the biological question?</h2>
       <p class="lead">
@@ -324,40 +420,85 @@
     <div class="container">
       <h2>Workflow</h2>
       <p class="lead">
-        The analysis was structured as a reproducible computational workflow, from raw public
-        data to interpretable multi-omic findings.
+        The analysis connects public TCGA-BRCA molecular data with interpretable
+        translational questions.
       </p>
-
-      <div class="workflow">
-        <div class="step">
-          <div class="step-number">01</div>
-          <strong>Data harmonization</strong>
-          <p>Aligned TCGA sample IDs across expression, clinical metadata, mutation and CNA layers.</p>
+  
+      <div class="workflow-map">
+        <div class="workflow-column">
+          <h3>Inputs</h3>
+  
+          <div class="workflow-block">
+            RNA-seq expression
+            <small>bulk transcriptomic profiles</small>
+          </div>
+  
+          <div class="workflow-block">
+            Clinical metadata
+            <small>subtype, survival and sample annotations</small>
+          </div>
+  
+          <div class="workflow-block">
+            Mutation data
+            <small>selected cancer driver events</small>
+          </div>
+  
+          <div class="workflow-block">
+            Copy-number alterations
+            <small>gene-level amplification/deletion calls</small>
+          </div>
         </div>
-        <div class="step">
-          <div class="step-number">02</div>
-          <strong>Subtype biology</strong>
-          <p>Validated known marker patterns across Luminal, HER2-enriched, Basal-like and Normal-like groups.</p>
+  
+        <div class="workflow-arrow">→</div>
+  
+        <div class="workflow-column">
+          <h3>Analysis layers</h3>
+  
+          <div class="workflow-block">
+            Data harmonization
+            <small>sample-level integration across omics layers</small>
+          </div>
+  
+          <div class="workflow-block">
+            Subtype expression analysis
+            <small>markers, PCA and differential expression</small>
+          </div>
+  
+          <div class="workflow-block">
+            Driver alteration mapping
+            <small>mutation/CNA frequency by subtype</small>
+          </div>
+  
+          <div class="workflow-block">
+            Genotype-expression models
+            <small>event-expression associations adjusted for subtype</small>
+          </div>
         </div>
-        <div class="step">
-          <div class="step-number">03</div>
-          <strong>Transcriptomic structure</strong>
-          <p>Used global RNA-seq profiles to visualize subtype-associated heterogeneity.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">04</div>
-          <strong>Driver alterations</strong>
-          <p>Integrated mutation and copy-number events to identify subtype-associated alteration patterns.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">05</div>
-          <strong>Genotype-expression</strong>
-          <p>Tested whether genomic events have expression-level consequences after subtype adjustment.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">06</div>
-          <strong>Discovery layer</strong>
-          <p>Explored subtype-adjusted CNA-expression and driver-associated expression programs.</p>
+  
+        <div class="workflow-arrow">→</div>
+  
+        <div class="workflow-column">
+          <h3>Outputs</h3>
+  
+          <div class="workflow-block">
+            Patient stratification view
+            <small>how tumour groups differ molecularly</small>
+          </div>
+  
+          <div class="workflow-block">
+            Driver alteration patterns
+            <small>TP53, ERBB2, PIK3CA, CDH1, MAP3K1 and others</small>
+          </div>
+  
+          <div class="workflow-block">
+            Translational hypotheses
+            <small>candidate alteration-expression relationships</small>
+          </div>
+  
+          <div class="workflow-block">
+            Limitations and next steps
+            <small>external validation, regional CNA mapping, model matching</small>
+          </div>
         </div>
       </div>
     </div>
