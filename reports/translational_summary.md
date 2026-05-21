@@ -64,6 +64,17 @@ Overall survival, defined as time until death or last follow-up, showed an explo
 
 Subtype-adjusted CNA-expression scans and driver-associated transcriptome scans identified candidate dosage-sensitive genes and expression programs. These findings require external validation and should not be interpreted as causal or clinically actionable.
 
+### 7. Ex-vivo model matching provides a translational extension
+
+As a proof of concept, TCGA-BRCA subtype expression centroids were projected onto DepMap/CCLE breast cancer cell line transcriptomes to prioritize candidate ex-vivo models.
+
+The top matches recovered biologically plausible candidates for major disease contexts:
+
+- Basal-like profiles matched basal/triple-negative-like breast cancer cell lines.
+- HER2-enriched profiles matched HER2-associated breast cancer cell lines.
+- Luminal profiles matched ER-positive/luminal-like breast cancer cell lines.
+
+This analysis is intended as model prioritization, not experimental validation. Cell lines do not capture tumour microenvironment, stromal content, immune composition or full patient heterogeneity.
 ## Patient stratification interpretation
 
 Molecular subtype was used as the initial stratification layer. Mutation, copy-number and expression data were then integrated to describe what makes each tumour group biologically distinct.
@@ -99,4 +110,4 @@ This workflow demonstrates how public multi-omic cancer datasets can be used to:
 1. Map CNA-expression discovery hits to genomic coordinates to distinguish focal events from broad amplicons.
 2. Perform pathway or gene-set enrichment on driver-associated expression signatures.
 3. Validate candidate signatures in an independent breast cancer cohort.
-4. Integrate breast cancer cell line or organoid datasets from DepMap/CCLE to identify ex-vivo models representing key TCGA-BRCA molecular subtypes.
+4. Refine the DepMap/CCLE ex-vivo model matching analysis using subtype-specific signatures, copy-number information and independent model annotation.

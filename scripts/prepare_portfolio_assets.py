@@ -30,6 +30,9 @@ FIGURE_MAP = {
 
     # 08 — optional clinical outcome
     "overall_survival_by_subtype.png": "08_overall_survival_by_subtype.png",
+    # 10 — ex-vivo model matching
+    "depmap_breast_models_tcga_subtype_similarity_heatmap.png": "09_depmap_model_matching_heatmap.png",
+    "depmap_top_matches_marker_sanity_check.png": "10_depmap_marker_sanity_check.png",
 }
 
 missing = []

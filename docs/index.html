@@ -693,7 +693,43 @@
       </div>
     </div>
   </section>
+  <section>
+    <div class="container">
+      <h2>Translational extension — ex-vivo model matching</h2>
+      <p class="lead">
+        As a proof of concept, TCGA-BRCA subtype expression centroids were projected onto
+        DepMap/CCLE breast cancer cell line transcriptomes to prioritize candidate ex-vivo
+        models representing Basal-like, HER2-enriched and Luminal-like disease contexts.
+      </p>
 
+      <div class="figure-card">
+        <img src="assets/09_depmap_model_matching_heatmap.png" alt="DepMap breast cancer cell line similarity to TCGA-BRCA subtype centroids">
+        <div class="figure-caption">
+          Similarity between DepMap breast cancer cell lines and TCGA-BRCA subtype expression centroids.
+          Top matches recovered biologically plausible candidate models, including HER2-like, luminal-like
+          and basal-like breast cancer cell lines. Similarity values are modest and should be interpreted
+          as model prioritization rather than experimental validation.
+        </div>
+      </div>
+
+      <div class="figure-card">
+        <img src="assets/10_depmap_marker_sanity_check.png" alt="Marker expression sanity check for top DepMap matches">
+        <div class="figure-caption">
+          Marker-level sanity check for top matched models. This helps verify whether candidate cell lines
+          show expected luminal, HER2-associated or basal-like marker patterns. Normal-like matching was
+          not emphasized because normal-like tumour profiles are harder to interpret in cell line systems.
+        </div>
+      </div>
+
+      <div class="warning" style="margin-top: 24px;">
+        <strong>Interpretation caution:</strong>
+        cell lines are simplified ex-vivo models. They do not capture tumour microenvironment, immune
+        infiltration, stromal composition or patient-level heterogeneity. These results should be treated
+        as a prioritization step for candidate models, not as validation that a cell line fully represents
+        a patient subgroup.
+      </div>
+    </div>
+  </section>
   <section>
     <div class="container">
       <h2>Secondary analysis — clinical outcome exploration</h2>
