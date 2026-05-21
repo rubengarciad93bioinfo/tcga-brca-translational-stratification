@@ -15,7 +15,7 @@ The project integrates:
 
 The curated visual case study is available here:
 
-[Open the portfolio case study](docs/index.html)
+[Open the portfolio case study](https://rubengarciad93bioinfo.github.io/tcga-brca-translational-stratification/)
 
 ## Summary
 
