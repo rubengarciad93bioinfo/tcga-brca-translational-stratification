@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TCGA-BRCA Multi-omic Portfolio</title>
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --text: #1f2933;
+      --muted: #5f6b7a;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --accent: #8b1e3f;
+      --accent-soft: #f5e8ee;
+      --blue-soft: #eaf2f8;
+      --green-soft: #edf7ed;
+      --shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 72px 24px 48px;
+      background: linear-gradient(135deg, #391326 0%, #8b1e3f 55%, #c45c74 100%);
+      color: white;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      opacity: 0.85;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 1.05;
+      margin: 16px 0;
+      max-width: 980px;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      max-width: 840px;
+      opacity: 0.92;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: white;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .button:hover {
+      background: rgba(255,255,255,0.22);
+    }
+
+    section {
+      padding: 48px 24px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 0 0 12px;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 840px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .metric {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .step {
+      padding: 18px;
+      border-radius: 18px;
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      min-height: 120px;
+    }
+
+    .step-number {
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .figure-card {
+      background: white;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-top: 24px;
+    }
+
+    .figure-card img {
+      width: 100%;
+      display: block;
+      background: white;
+    }
+
+    .figure-caption {
+      padding: 18px 22px 22px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .finding {
+      border-left: 5px solid var(--accent);
+    }
+
+    .callout {
+      background: var(--blue-soft);
+      border: 1px solid #d4e6f1;
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .warning {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    footer {
+      padding: 40px 24px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: white;
+    }
+
+    code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    @media (max-width: 760px) {
+      section {
+        padding: 36px 18px;
+      }
+
+      header {
+        padding: 56px 18px 40px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="eyebrow">Computational Biology Portfolio Case Study</div>
+      <h1>Multi-omic exploration of breast cancer molecular heterogeneity</h1>
+      <p class="subtitle">
+        A reproducible TCGA-BRCA workflow integrating RNA-seq, molecular subtypes,
+        mutations, copy-number alterations and clinical metadata for patient stratification
+        and translational hypothesis generation.
+      </p>
+      <div class="links">
+        <a class="button" href="../README.md">Repository README</a>
+        <a class="button" href="../reports/translational_summary.md">Translational Summary</a>
+        <a class="button" href="../notebooks/">Analysis Notebooks</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container grid grid-3">
+      <div class="card">
+        <div class="metric">1,082</div>
+        <div class="metric-label">TCGA-BRCA samples integrated across expression and clinical metadata</div>
+      </div>
+      <div class="card">
+        <div class="metric">5</div>
+        <div class="metric-label">Molecular subtype groups retained: LumA, LumB, HER2, Basal and Normal-like</div>
+      </div>
+      <div class="card">
+        <div class="metric">4</div>
+        <div class="metric-label">Main data layers: RNA-seq, clinical metadata, mutation and copy-number alteration data</div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="callout">
+        <h2>TL;DR</h2>
+        <p>
+          I built a reproducible multi-omic workflow using TCGA-BRCA to explore how
+          breast cancer molecular subtypes relate to RNA-seq expression, mutation patterns,
+          copy-number alterations and clinical metadata.
+        </p>
+        <p>
+          The strongest results were the subtype-specific driver alteration patterns:
+          Basal-like tumours were enriched for TP53 mutation, HER2-enriched tumours for
+          ERBB2 amplification, and Luminal A tumours for PIK3CA/CDH1/MAP3K1 alterations.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <h2>What was the biological question?</h2>
+      <p class="lead">
+        This project does not ask whether a patient has cancer. TCGA-BRCA mainly contains
+        breast cancer samples. The goal is to understand how breast cancer samples differ
+        molecularly, and how transcriptomic subtypes relate to genomic driver events.
+      </p>
+
+      <div class="tag-row">
+        <span class="tag">patient stratification</span>
+        <span class="tag">RNA-seq</span>
+        <span class="tag">copy-number alterations</span>
+        <span class="tag">mutation data</span>
+        <span class="tag">genotype-expression integration</span>
+        <span class="tag">translational oncology</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Workflow</h2>
+      <p class="lead">
+        The analysis was structured as a reproducible computational workflow, from raw public
+        data to interpretable multi-omic findings.
+      </p>
+
+      <div class="workflow">
+        <div class="step">
+          <div class="step-number">01</div>
+          <strong>Data harmonization</strong>
+          <p>Aligned TCGA sample IDs across expression, clinical metadata, mutation and CNA layers.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <strong>Subtype biology</strong>
+          <p>Validated known marker patterns across Luminal, HER2-enriched, Basal-like and Normal-like groups.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <strong>Transcriptomic structure</strong>
+          <p>Used global RNA-seq profiles to visualize subtype-associated heterogeneity.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">04</div>
+          <strong>Driver alterations</strong>
+          <p>Integrated mutation and copy-number events to identify subtype-associated alteration patterns.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">05</div>
+          <strong>Genotype-expression</strong>
+          <p>Tested whether genomic events have expression-level consequences after subtype adjustment.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">06</div>
+          <strong>Discovery layer</strong>
+          <p>Explored subtype-adjusted CNA-expression and driver-associated expression programs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Key finding 1 — Global expression captures subtype structure</h2>
+      <p class="lead">
+        PCA of highly variable genes shows that breast cancer molecular subtypes are partly
+        encoded in global transcriptomic profiles. Basal-like samples show the clearest separation,
+        while Luminal A, Luminal B and HER2-enriched samples partially overlap.
+      </p>
+
+      <div class="figure-card">
+        <img src="assets/01_pca_by_subtype.png" alt="PCA of TCGA-BRCA samples colored by subtype">
+        <div class="figure-caption">
+          PCA using highly variable RNA-seq features. The result supports subtype-associated
+          transcriptomic structure, but also shows that simple unsupervised clustering does not
+          perfectly reproduce subtype labels.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Key finding 2 — Subtypes show interpretable expression signatures</h2>
+      <p class="lead">
+        Differential expression analysis recovered expected subtype-associated biology:
+        luminal markers in Luminal A/B, proliferative and basal-like features in Basal-like tumours,
+        and ERBB2/HER2-associated signal in HER2-enriched tumours.
+      </p>
+
+      <div class="figure-card">
+        <img src="assets/02_subtype_signature_heatmap.png" alt="Subtype signature gene heatmap">
+        <div class="figure-caption">
+          Median expression of exploratory subtype signature genes, z-scored by gene across subtypes.
+          The heatmap summarizes subtype-associated expression programs.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Key finding 3 — Genomic drivers differ by subtype</h2>
+      <p class="lead">
+        Mutation and copy-number data reveal distinct alteration patterns across molecular subtypes.
+        This is the core multi-omic result of the project.
+      </p>
+
+      <div class="figure-card">
+        <img src="assets/03_driver_alterations_by_subtype.png" alt="Driver alteration frequency by subtype heatmap">
+        <div class="figure-caption">
+          Selected mutation and copy-number event frequencies by subtype. Basal-like tumours are enriched
+          for TP53 mutation; HER2-enriched tumours show ERBB2 amplification; Luminal A shows higher
+          frequencies of PIK3CA, CDH1 and MAP3K1 mutations.
+        </div>
+      </div>
+
+      <div class="grid grid-3" style="margin-top: 24px;">
+        <div class="card finding">
+          <h3>Basal-like</h3>
+          <p>Strong TP53 mutation enrichment, with additional MYC amplification, PTEN deletion and RB1 deletion signals.</p>
+        </div>
+        <div class="card finding">
+          <h3>HER2-enriched</h3>
+          <p>Strong ERBB2 amplification linked to the HER2-enriched expression phenotype.</p>
+        </div>
+        <div class="card finding">
+          <h3>Luminal A/B</h3>
+          <p>Higher PIK3CA, GATA3, CDH1 and MAP3K1 mutation patterns, with LumB showing more proliferative features.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Key finding 4 — Copy-number events have expression consequences</h2>
+      <p class="lead">
+        Copy-number alterations were linked with RNA expression to test whether genomic events
+        had measurable transcriptomic consequences.
+      </p>
+
+      <div class="grid grid-2">
+        <div class="figure-card">
+          <img src="assets/04_erbb2_amp_expression.png" alt="ERBB2 expression by amplification status">
+          <div class="figure-caption">
+            ERBB2-amplified samples show markedly higher ERBB2 expression, validating copy-number/RNA-seq integration.
+          </div>
+        </div>
+
+        <div class="figure-card">
+          <img src="assets/05_erbb2_subtype_amp_expression.png" alt="ERBB2 expression by subtype and amplification">
+          <div class="figure-caption">
+            ERBB2 amplification connects HER2-enriched subtype identity with high ERBB2 expression.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top: 24px;">
+        <strong>Subtype-adjusted interpretation:</strong>
+        ERBB2 amplification, CCND1 amplification and PTEN deletion remained associated with expression
+        changes after accounting for molecular subtype. In contrast, the apparent PIK3CA mutation–ESR1
+        relationship largely disappeared after subtype adjustment, suggesting a luminal-context effect rather
+        than a direct expression effect.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Exploratory discovery layer</h2>
+      <p class="lead">
+        To move beyond known positive controls, subtype-adjusted scans were used to identify
+        dosage-sensitive genes, driver-associated expression programs and residual co-expression modules.
+        These results are hypothesis-generating.
+      </p>
+
+      <div class="grid grid-2">
+        <div class="figure-card">
+          <img src="assets/06_driver_associated_expression_heatmap.png" alt="Driver associated expression heatmap">
+          <div class="figure-caption">
+            Subtype-adjusted driver-associated expression effects. This analysis asks whether selected
+            driver events are associated with broader expression programs beyond subtype labels.
+          </div>
+        </div>
+
+        <div class="figure-card">
+          <img src="assets/07_module_event_associations.png" alt="Module event association heatmap">
+          <div class="figure-caption">
+            Associations between driver events and subtype-adjusted expression modules. These modules require
+            further interpretation and external validation.
+          </div>
+        </div>
+      </div>
+
+      <div class="warning" style="margin-top: 24px;">
+        <strong>Important limitation:</strong>
+        CNA-expression hits may reflect broad amplified or deleted genomic regions rather than independent
+        gene-specific driver effects. A next refinement would map candidates to genomic coordinates and
+        distinguish focal events from broad amplicons.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Clinical outcome exploration</h2>
+      <p class="lead">
+        Clinical outcome metadata were integrated as an exploratory layer. Overall survival showed a modest
+        association with molecular subtype, while individual driver events did not show robust standalone
+        OS/PFS associations in this retrospective cohort.
+      </p>
+
+      <div class="figure-card">
+        <img src="assets/08_overall_survival_by_subtype.png" alt="Overall survival by subtype">
+        <div class="figure-caption">
+          Kaplan-Meier analysis by molecular subtype. This result is exploratory and should not be interpreted
+          as clinical validation.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>What this project demonstrates</h2>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Computational biology</h3>
+          <p>RNA-seq processing, subtype interpretation, marker validation and differential expression analysis.</p>
+        </div>
+        <div class="card">
+          <h3>Multi-omic integration</h3>
+          <p>Integration of expression, mutation, copy-number and clinical metadata across TCGA samples.</p>
+        </div>
+        <div class="card">
+          <h3>Translational reasoning</h3>
+          <p>Connecting molecular heterogeneity, driver alterations and expression consequences while communicating limitations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Limitations</h2>
+      <ul>
+        <li>TCGA is retrospective and not a clinical trial.</li>
+        <li>Treatment and response data are incomplete.</li>
+        <li>Molecular subtype labels are partly expression-derived.</li>
+        <li>Copy-number events may span broad regions, so gene-level CNA-expression effects require regional interpretation.</li>
+        <li>Discovery analyses are hypothesis-generating and require independent validation.</li>
+      </ul>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <h2>Relevance to translational computational biology</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Patient stratification</h3>
+          <p>Subtype-aware analyses connect molecular labels with genomic driver patterns.</p>
+        </div>
+        <div class="card">
+          <h3>Multi-omic integration</h3>
+          <p>RNA-seq, mutation, copy-number and clinical metadata are harmonized at sample level.</p>
+        </div>
+        <div class="card">
+          <h3>Decision-oriented communication</h3>
+          <p>Results are summarized as interpretable findings, limitations and next analytical steps.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <strong>TCGA-BRCA Multi-omic Translational Stratification</strong>
+      <p>
+        Portfolio case study for computational biology, bioinformatics and translational oncology roles.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
