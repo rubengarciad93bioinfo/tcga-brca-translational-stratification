@@ -46,6 +46,8 @@ docs/        Curated visual portfolio case study
 
 Install dependencies:
 
+```text
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
