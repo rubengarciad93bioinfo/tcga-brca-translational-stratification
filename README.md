@@ -30,6 +30,7 @@ Main analyses include:
 5. Genotype-expression integration
 6. Clinical outcome exploration
 7. Subtype-adjusted exploratory multi-omic discovery
+8. Subtype- and sample-level ex-vivo model matching with DepMap/CCLE breast cancer cell lines
 
 ## Repository structure
 

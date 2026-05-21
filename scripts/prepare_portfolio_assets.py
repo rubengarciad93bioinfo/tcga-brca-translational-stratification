@@ -33,6 +33,9 @@ FIGURE_MAP = {
     # 10 — ex-vivo model matching
     "depmap_breast_models_tcga_subtype_similarity_heatmap.png": "09_depmap_model_matching_heatmap.png",
     "depmap_top_matches_marker_sanity_check.png": "10_depmap_marker_sanity_check.png",
+    # 10 — sample-level ex-vivo model matching
+    "sample_level_depmap_model_matching_frequency_by_subtype.png": "11_sample_level_model_frequency_by_subtype.png",
+    "sample_level_best_depmap_similarity_by_subtype.png": "12_sample_level_best_similarity_by_subtype.png",
 }
 
 missing = []

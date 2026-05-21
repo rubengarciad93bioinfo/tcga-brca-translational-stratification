@@ -75,6 +75,10 @@ The top matches recovered biologically plausible candidates for major disease co
 - Luminal profiles matched ER-positive/luminal-like breast cancer cell lines.
 
 This analysis is intended as model prioritization, not experimental validation. Cell lines do not capture tumour microenvironment, stromal content, immune composition or full patient heterogeneity.
+
+A sample-level extension was also performed by comparing each individual TCGA-BRCA tumour sample against DepMap/CCLE breast cancer cell lines. This provides a more granular prioritization view than subtype centroid matching.
+
+This analysis should not be interpreted as a probabilistic patient-to-model assignment. The similarity values represent relative transcriptomic proximity within the available breast cancer cell-line panel. Basal-like samples showed the clearest mapping to basal-like model contexts, while HER2-enriched and luminal samples showed more moderate or heterogeneous matching.
 ## Patient stratification interpretation
 
 Molecular subtype was used as the initial stratification layer. Mutation, copy-number and expression data were then integrated to describe what makes each tumour group biologically distinct.

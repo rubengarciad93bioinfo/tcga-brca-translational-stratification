@@ -720,7 +720,40 @@
           not emphasized because normal-like tumour profiles are harder to interpret in cell line systems.
         </div>
       </div>
+      <h3 style="margin-top: 32px;">Sample-level model prioritization</h3>
+      <p class="lead">
+        In addition to subtype centroid matching, each individual TCGA-BRCA sample was compared
+        against DepMap/CCLE breast cancer cell lines. This provides a more granular view of how
+        tumour samples within the same molecular subtype may map to different candidate ex-vivo models.
+      </p>
 
+      <div class="grid grid-2">
+        <div class="figure-card">
+          <img src="assets/11_sample_level_model_frequency_by_subtype.png" alt="Sample-level DepMap model matching frequency by TCGA-BRCA subtype">
+          <div class="figure-caption">
+            Frequency with which each DepMap breast cancer cell line appears as the top-matching model
+            for individual TCGA-BRCA samples within each subtype. This highlights recurrent candidate
+            models while preserving within-subtype heterogeneity.
+          </div>
+        </div>
+
+        <div class="figure-card">
+          <img src="assets/12_sample_level_best_similarity_by_subtype.png" alt="Best DepMap model similarity per TCGA-BRCA sample">
+          <div class="figure-caption">
+            Distribution of the best available cell-line similarity for individual TCGA-BRCA samples.
+            Similarity scores are not probabilities; they indicate relative transcriptomic proximity within
+            the available DepMap breast cancer model set.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top: 24px;">
+        <strong>Sample-level interpretation:</strong>
+        this analysis does not assign a validated model to each patient. Instead, it prioritizes candidate
+        cell lines whose expression profiles are relatively closer to individual tumour samples. Basal-like
+        samples showed the clearest mapping to basal-like cell-line contexts, while HER2-enriched and luminal
+        profiles showed more moderate or heterogeneous matching.
+      </div>
       <div class="warning" style="margin-top: 24px;">
         <strong>Interpretation caution:</strong>
         cell lines are simplified ex-vivo models. They do not capture tumour microenvironment, immune
